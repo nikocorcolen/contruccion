@@ -10,11 +10,7 @@ class laboratorio
    
    function laboratorio($nombre, $descripcion, $administradores, $instructores, $aprendices)
    {
-      $this -> administradores = $administradores;
-      $this -> instructores = $instructores;
-      $this -> aprendices = $aprendices;
-      $this -> nombre = $nombre;
-      $this -> descripcion = $descripcion;
+      
    }
 
    public function obtener_descripcion()
