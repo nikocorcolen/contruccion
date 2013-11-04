@@ -17,6 +17,8 @@ class laboratorio
       $this -> descripcion = $descripcion;
    }
 
+
+
    public function obtener_descripcion()
    {
       return $this -> descripcion;
