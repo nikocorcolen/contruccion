@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
+<meta charset="utf-8">
 <script src="scripts/ckeditor.js"></script>
 <script type="text/javascript">
 
@@ -47,7 +47,7 @@
 		
 			<label>descripcion <em>*</em> </label>
 			
-			<textarea class="ckeditor" cols="80" id="descripcion_lab" rows="10"  name='descripcion_lab' tabindex="1"  value="asd"></textarea><br>
+			<textarea class="ckeditor" cols="80" id="descripcion_lab" rows="10"  name='descripcion_lab' tabindex="1"  ></textarea><br>
 			<textarea rows="5" id="descripcion"></textarea><br>
 		    <input type='button' value="crear" onclick="if (checkForm(form1)) document.forms['form1'].submit();" />
 </form>
