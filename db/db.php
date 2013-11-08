@@ -3,8 +3,8 @@
 
    function conectarse() {
       $host="localhost";
-      $user="gustavop_d";
-      $password="admin1";
+      $user="root";
+      $password="";
       $db="gustavop_e";
       $con=mysqli_connect($host,$user,$password,$db);
       return $con;
@@ -38,8 +38,8 @@
         $descripcion=$row['descripcion_lab'];
         $id=$row['id'];
         echo " nombre     :    ". $nombre . "  descripcion lab    :   "  . $descripcion;    
-        echo '<td><a href="../vista/edit.php?id=' . $id. '">Edit</a></td>';
-        echo '<td><a href="../controladores/controlLab.php?run=eliminar&id=' . $id . '">Delete</a>';
+        echo '<td><a href="../contruccion/vista/edit.php?id=' . $id. '">Edit</a></td>';
+        echo '<td><a href="../contruccion/controladores/controlLab.php?run=eliminar&id=' . $id . '">Delete</a>';
         echo "<br>";
       }
       mysqli_close($con);
