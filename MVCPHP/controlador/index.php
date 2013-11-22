@@ -25,8 +25,22 @@ else{
 	//diccionario vario, para que en los inputs no aparesca nada
 	$diccionario = array('nombre' => '',
 						'descripcion' => '');
-	$template = set_values('../vista/crear.html', $diccionario);
-	print $template; 
+	
+	$contenido_externo = file_get_contents('../vista/actual/index.html');
+	 print ($contenido_externo);
+	
+}
+
+function get_data($url)
+{
+ $ch = curl_init();
+ $timeout = 5;
+ curl_setopt($ch,CURLOPT_URL,$url);
+ curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+ curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);
+ $data = curl_exec($ch);
+ curl_close($ch);
+ return $data;
 }
 
 
