@@ -1,3 +1,4 @@
+<script type="text/javascript" src="funciones.js"></script>
 <?php
 
 
@@ -54,9 +55,13 @@ function crear(){
 
 		$guardado = guardar_laboratorio($_POST['nombre'], $_POST['descripcion']);
 		if($guardado){
-
-			$template = file_get_contents('../vista/creado_exito.html');
-			print $template;
+			?>
+			<script type="text/javascript">creadoConExito();</script>
+			
+			<?php
+			//$template = file_get_contents('../vista/creado_exito.html');
+			//print $template;
+			echo 'Se guardo correctamente';
 		}
 		else{
 			echo 'Se guardo incorrectamente';
@@ -76,15 +81,17 @@ function crear(){
 
 function listar(){
 
-	require_once('../datos/datos.php');
-	require_once('../vista/listar.html');
-	require_once('../vista/listar.html');
+	//require_once('../datos/datos.php');
+	//require_once('../vista/listar.html');
+	//require_once('../vista/listar.html');
 	
-	$template = file_get_contents('../vista/listar.html');
+	//$template = file_get_contents('../vista/listar.html');
+	?>
+	<script type="text/javascript">lisLab();</script>>
+	<?php
 
 
-
-	print $template;
+	//print $template;
 	
 
 

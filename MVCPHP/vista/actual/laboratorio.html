@@ -6,51 +6,28 @@
     <link href="styles/kendo.default.min.css" rel="stylesheet" />
     <script src="js/jquery.min.js"></script>
     <script src="js/kendo.all.min.js"></script>
-    <script src="scripts/ckeditor.js"></script>
+    <script src="../../js/scripts/ckeditor.js"></script>
+    <script type="text/javascript" src="../../controlador/funciones.js"></script>
     <meta charset="UTF-8"/>    
 </head>
 
-<script type="text/javascript">
-
-    function checkForm(form)
-    {
-        if(   isEmpty(form.nombre_lab.value)  ) 
-        {
-            alert("Error: debes llenar los campos");
-            return false;
-        }
-        var des = document.getElementById("descripcion");
 
 
-        if(  isEmpty(des.value ) )
-        {
+ <body bgcolor="#e2e2e2">   
+<form class="form1" name="crear_form" method="POST" action="../../controlador/index.php">
 
-            alert("Error: debe llenar la text area");
-            return false;
-        }
-    
-        return true;
-    }
-
-    function isEmpty(str) {
-        return (!str || 0 === str.length);
-    }
-
-
-</script>
-
-
-<form class="form1" name="form1" id="form_lab" method="post" action="controlador/controlLab.php?run=crear" >
-  <body bgcolor="#e2e2e2">   
-      <h2 align="center"> Laboratorio X </h2>
-      <div id="formulario" class="k-content">
-      <div style="background-color:#e2e2e2">
-         
+ 
               <table  align="center"  border="0" width="75%" bgcolor="#e2e2e2">
                 <ul class="forms">
                   <tr height="15">
                       <td>Nombre del laboratorio</td>
-                      <td align="center"> <input type="text" class="k-textbox" size="20"/></td>                   
+                      <td align="center">
+          
+      <h2 align="center"> Laboratorio X </h2>
+      <div id="formulario" class="k-content">
+      <div style="background-color:#e2e2e2">
+                     <input type="hidden" name="action" value="crear">
+                       <input type="text" id="nombre" name="nombre" class="k-textbox" required="required" size="20"/></td>                   
                   </tr>
                   <!--tr height="15">
                            <td>Area:</td>
@@ -96,13 +73,17 @@
                   </tr>
                   <tr height="15">
                            <td>Descripción:</td>
-                           <td align="center"> <textarea class="ckeditor" cols="80" id="descripcion_lab" rows="10"  name='descripcion_lab' tabindex="1"  ></textarea><br>  <!--textarea class="k-textbox" selected="true"></textarea--></td>                   
+                           <td align="center"> 
+                            <input type="hidden" name="descripcion" value="asd">
+                              <textarea class="ckeditor" cols="80" id="descripcion" rows="10"  name='descripcion' tabindex="1"  ></textarea>
+                            </input>
+                            <br>  <!--textarea class="k-textbox" selected="true"></textarea--></td>                   
                        </tr>          
                   <tr height="15">
                            <td></td>
                            <td align="center">
-                               <input type="submit" class="k-button" value="Guardar" >
-                               <input type="reset" class="k-button" value="Salir" onclick="if (checkForm(form1)) document.forms['form1'].submit();"></td>                   
+                            <input type="submit" value="Crear" class="k-button" >
+                            <input type="reset" class="k-button" value="Salir" ></td>                   
                        </tr>
                  </ul>
               </table>
