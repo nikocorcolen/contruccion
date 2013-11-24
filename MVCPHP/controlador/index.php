@@ -64,6 +64,7 @@ function crear(){
 			echo 'Se guardo correctamente';
 		}
 		else{
+			
 			echo 'Se guardo incorrectamente';
 		}
 	}

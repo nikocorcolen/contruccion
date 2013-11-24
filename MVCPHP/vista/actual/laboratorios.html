@@ -30,13 +30,17 @@ and open the template in the editor.
                 <div id="grid" style="height: 380px"></div>
 
             </div>
-
-
             <script>
+                
                 $(document).ready(function() {
-                    $("#grid").kendoGrid({
+                    
+                    datas = [];
+
+                    $.get("datos.php",function(respuesta){
+                        datas = JSON.parse(respuesta);
+                        $("#grid").kendoGrid({
                         dataSource: {
-                            data: createRandomData(50),
+                            data: datas,
                             pageSize: 10
                         },
                         groupable: true,
@@ -46,33 +50,29 @@ and open the template in the editor.
                             pageSizes: true
                         },
                         columns: [ {
-                                field: "FirstName",
+                                field: "ID",
+                                width: 80,
+                                title: "ID"
+                            } , {
+                                field: "nombre",
                                 width: 80,
                                 title: "Nombre"
                             } , {
-                                field: "LastName",
+                                field: "descripcion",
                                 width: 80,
-                                title: "Area"
-                            } , {
-                                field: "City",
-                                width: 80,
-                                title: "Lugar"
-                            } , {
-                                field: "Title", 
-                                width: 100,
-                                title: "Area"
-                            } , {
-                                field: "BirthDate",
-                                width: 120,
-                                title: "Fecha Ultima Utilizacion",
-                                template: '#= kendo.toString(BirthDate,"dd MMMM yyyy") #'
-                            } , {
-                                field: "Age",
-                                width: 100,
-                                title: "Administradores"
-                            }
+                                title: "Descripcion"
+                            } 
                         ]
+                    })
                     });
+
+                    
+                    
+                    
+
+                    
+
+                    
                 });
             </script>
         </div>
