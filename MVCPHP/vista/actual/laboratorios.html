@@ -32,11 +32,13 @@ and open the template in the editor.
             </div>
             <script>
                 
-                $(document).ready(function() {
+                $(document).ready(function() 
+                {
                     
                     datas = [];
 
-                    $.get("datos.php",function(respuesta){
+                    $.get("datos.php",function(respuesta)
+                    {
                         datas = JSON.parse(respuesta);
                         $("#grid").kendoGrid({
                         dataSource: {
@@ -45,11 +47,13 @@ and open the template in the editor.
                         },
                         groupable: true,
                         sortable: true,
+                        editable: "inline",
                         pageable: {
                             refresh: true,
                             pageSizes: true
                         },
-                        columns: [ {
+                        columns: [ 
+                        {
                                 field: "ID",
                                 width: 80,
                                 title: "ID"
@@ -61,9 +65,13 @@ and open the template in the editor.
                                 field: "descripcion",
                                 width: 80,
                                 title: "Descripcion"
-                            } 
+                            }, {width: 100,
+                           command: [{name: "edit", text: {edit: "Editar",
+                           update: "Actualizar", cancel: "Cancelar"}},
+                           {name:"destroy", text: "Eliminar"}
+                           ]} 
                         ]
-                    })
+                        })
                     });
                     
                 });
