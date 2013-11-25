@@ -31,6 +31,11 @@ and open the template in the editor.
 
             </div>
             <script>
+
+            function asd(ID)
+            {
+                $.get("eliminar.php", {ID: ID}, function(a){alert(a);});
+            }
                 
                 $(document).ready(function() 
                 {
@@ -47,13 +52,13 @@ and open the template in the editor.
                         },
                         groupable: true,
                         sortable: true,
-                        editable: "inline",
                         pageable: {
                             refresh: true,
                             pageSizes: true
                         },
                         columns: [ 
-                        {
+                        {       
+                                hidden: true,
                                 field: "ID",
                                 width: 80,
                                 title: "ID"
@@ -65,12 +70,20 @@ and open the template in the editor.
                                 field: "descripcion",
                                 width: 80,
                                 title: "Descripcion"
-                            }, {width: 100,
-                           command: [{name: "edit", text: {edit: "Editar",
-                           update: "Actualizar", cancel: "Cancelar"}},
-                           {name:"destroy", text: "Eliminar"}
-                           ]} 
-                        ]
+                            }, {
+                                width: 100,
+                                command: [
+                                {name: "edit", text: {edit: "Editar",update: "Actualizar", cancel: "Cancelar"}},
+                                {name:"destroy", text: "Eliminar"}
+                                
+                                ]
+                            } 
+                        ],
+                        editable: {mode: "inline", confirmation: "¿Esta seguro que desea eliminar este registro?"},
+                        remove: function(e) {
+                            //$.get("eliminar.php", {ID: e.model.ID}, function(a){alert(a);});
+                            asd(e.model.ID);
+                        }
                         })
                     });
                     
