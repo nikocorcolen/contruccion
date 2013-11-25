@@ -28,7 +28,7 @@ else{
 						'descripcion' => '');
 	
 	$contenido_externo = file_get_contents('../vista/actual/index.html');
-	 print ($contenido_externo);
+	print ($contenido_externo);
 	
 }
 
