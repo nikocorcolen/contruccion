@@ -36,6 +36,11 @@ and open the template in the editor.
             {
                 $.get("eliminar.php", {ID: ID}, function(a){alert(a);});
             }
+            function editar(ID, nombre,descripcion)
+            {
+                $.get("editar.php",{ID: ID, nombre: nombre, descripcion: descripcion}, function(a){});
+            }
+
                 
                 $(document).ready(function() 
                 {
@@ -79,12 +84,16 @@ and open the template in the editor.
                                 ]
                             } 
                         ],
+
                         editable: {mode: "inline", confirmation: "¿Esta seguro que desea eliminar este registro?"},
                         remove: function(e) {
                             //$.get("eliminar.php", {ID: e.model.ID}, function(a){alert(a);});
                             asd(e.model.ID);
+                        },
+                        save: function(e){
+                            editar(e.model.ID,e.model.nombre,e.model.descripcion);
                         }
-                        })
+                    })
                     });
                     
                 });
