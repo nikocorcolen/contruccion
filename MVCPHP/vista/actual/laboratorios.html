@@ -25,7 +25,34 @@ and open the template in the editor.
     
         
     </head>
-    <body>    
+    <body>  
+    <script type="text/javascript">
+        $(document).on("click", "#boton_agregar",agregarFila);
+        function agregarFila()
+        {
+                 num_con_act=1;
+
+                var d = '<tr>'; //inicio de tabla
+
+                    d= d + '<td>';
+                    d= d + '<input class="k-input k-textbox" type="text" id="nombre_1" name="nombre_1">';
+                    d= d + '</td>';
+                    d= d + '<td>';
+                    d= d + '<input class="k-input k-textbox" type="text" id="cargo_1" name="cargo_1" readonly>';
+                    d= d + '</td>';
+                    d= d + '<td>';
+                    d= d + '<a id="boton_eliminar" name="boton_eliminar"  class="k-button" ><span class="k-icon k-i-cancel"></span></a>';
+                    d= d + '</td>';
+
+                d = d + '</tr>'; //fin de tabla
+
+                $("table#asignar_Usuario tr:last").after( d);
+        }
+        $(document).on("click", "#boton_eliminar",function()           
+        {
+            $(this).closest("tr").remove();
+        });
+    </script>  
             <script src="examples/content/shared/js/people.js"></script>
 
         <div id="example" class="k-content">
@@ -61,6 +88,31 @@ and open the template in the editor.
 
              cols="80" id="descripcion" rows="10"  name="descripcion" data-bind="value:descripcion"></textarea>
              </div>
+             <!-- Tabla PAra ingresar Usuarios -->
+             <table  id="asignar_Usuario">
+                            <thead>
+                                 <tr>
+                                    <th>Nombre</th>                       
+                                    <th>Cargo</th>
+                                    <th> <a class="k-button" id="boton_agregar" name="boton_agregar"><span class="k-icon k-i-plus"></span></a></th>           
+                                 </tr>
+                            </thead>
+                            <tbody align="center">
+                                <tr>
+                                    <td>                                 
+                                        <input class="k-input k-textbox" type="text" id="nombre_1" name="nombre_1">                
+                                    </td>                       
+                                    <td>                                                             
+                                        <input class="k-input k-textbox" type="text" id="cargo_1" name="cargo_1" readonly>                                               
+                                    </td>
+                                    <td>  
+                                    <a id="boton_eliminar" name="boton_eliminar" class="k-button" ><span class="k-icon k-i-cancel"></span></a>                                  
+                                        
+
+                                    </td>                   
+                                </tr>
+                            </tbody>
+                        </table>
            
 
         
