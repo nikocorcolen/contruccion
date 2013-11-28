@@ -11,7 +11,11 @@ and open the template in the editor.
     <link href="styles/kendo.common.min.css" rel="stylesheet">
     <link href="styles/kendo.rtl.min.css" rel="stylesheet">
     <link href="styles/kendo.default.min.css" rel="stylesheet">
-
+    <link href="http://cdn.kendostatic.com/2012.1.515/styles/kendo.common.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../js/scripts/samples/sample.css">
+   
+<script type="text/javascript"></script>
+                        
     <script src="js/jquery.min.js"></script>
     <script src="js/kendo.web.min.js"></script>
     <script src="examples/content/shared/js/console.js"></script>
@@ -27,9 +31,44 @@ and open the template in the editor.
         <div id="example" class="k-content">
             <div id="clientsDb">
 
-                <div id="grid" style="height: 380px"></div>
+                <div id="grid" style="height: 380px;"></div>
 
             </div>
+            <!-- TEMPLATE POPUP   -->
+            <script id="popup_editor" type="text/x-kendo-template">
+            #src="../../js/scripts/ckeditor.js"#
+            <div class="k-edit-label">
+                <label for="nombre">Nombre </label>
+            </div>
+
+            <input  style="margin-bottom: 5px;" type="text" class="k-input k-textbox" name="nombre" data-bind="value:nombre">
+             
+
+            <div class="k-edit-label" >
+                <label for="descripcion">Descripcion</label>
+            </div>
+            
+            <div class="k-content" >
+            <textarea data-role="editor" 
+            data-tools="[          'bold',
+                                   'italic',
+                                   'underline',
+                                   'strikethrough',
+                                   'justifyLeft',
+                                   'justifyCenter',
+                                   'justifyRight',
+                                   'justifyFull']"
+
+             cols="80" id="descripcion" rows="10"  name="descripcion" data-bind="value:descripcion"></textarea>
+             </div>
+           
+
+        
+
+            
+            </script>
+                
+
             <script>
 
             function asd(ID)
@@ -44,25 +83,64 @@ and open the template in the editor.
                 
                 $(document).ready(function() 
                 {
-                    
-                    datas = [];
-
-                    $.get("datos.php",function(respuesta)
-                    {
-                        datas = JSON.parse(respuesta);
                         $("#grid").kendoGrid({
                         dataSource: {
-                            data: datas,
-                            pageSize: 10
+                            transport: {
+                                read: {
+                                    url: "datos.php",
+                                    dataType: "JSON"
+                                },
+                                create: {
+                                    url: function (options) {
+                                        
+                                        return "crear.php?nombre=" + options.models[0].nombre + "&descripcion=" + options.models[0].descripcion;
+                                    },
+                                    type: "POST",
+                                    complete: function(){
+                                        $("#grid").data("kendoGrid").dataSource.read();
+                                    }
+                                },
+
+                                update: {
+                                    url: function(options){
+                                        return "update.php?ID=" + options.models[0].ID + "&nombre=" + options.models[0].nombre + "&descripcion=" + options.models[0].descripcion;
+                                    },
+                                    type: "POST",
+                                    dataType: "json"
+                                },
+
+                                destroy: {
+                                    url: function (options) {
+                                        return "eliminar.php?ID=" + options.models[0].ID;
+                                    },
+                                    type: "POST"
+                                },
+                                parameterMap: function(options, operation) {
+                                }
+
+                                
+                            },
+                            autoBind: true,
+                            batch: true,
+                            pageSize: 20,
+                            schema: {
+                                model: {
+                                    id: "ID",
+                                    fields: {
+                                        ID: { editable: false, nullable: true },
+                                        nombre: { validation: { required: {message: "Nombre es requerido"} } },
+                                        descripcion: { validation: { required: {message: "Descripcion es requerido"} } }
+                                    }
+                                }
+                            }
                         },
-                        groupable: true,
+                        toolbar: [{name: "create" , text: "Crear Nuevo" }],
                         sortable: true,
                         pageable: {
                             refresh: true,
                             pageSizes: true
                         },
-                        columns: [ 
-                        {       
+                        columns: [ {
                                 hidden: true,
                                 field: "ID",
                                 width: 80,
@@ -72,29 +150,24 @@ and open the template in the editor.
                                 width: 80,
                                 title: "Nombre"
                             } , {
+                                hidden: true,
                                 field: "descripcion",
                                 width: 80,
                                 title: "Descripcion"
                             }, {
                                 width: 100,
                                 command: [
-                                {name: "edit", text: {edit: "Editar",update: "Actualizar", cancel: "Cancelar"}},
-                                {name:"destroy", text: "Eliminar"}
-                                
+                                    {name: "edit", text: {edit: "Editar",update: "Actualizar", cancel: "Cancelar"}},
+                                    {name:"destroy", text: "Eliminar"}
                                 ]
                             } 
                         ],
 
-                        editable: {mode: "inline", confirmation: "¿Esta seguro que desea eliminar este registro?"},
-                        remove: function(e) {
-                            //$.get("eliminar.php", {ID: e.model.ID}, function(a){alert(a);});
-                            asd(e.model.ID);
-                        },
-                        save: function(e){
-                            editar(e.model.ID,e.model.nombre,e.model.descripcion);
-                        }
+                        editable: {mode: "popup", confirmation: "¿Esta seguro que desea eliminar este registro?",
+                            window :{title: "Edición"},
+                            template: kendo.template($("#popup_editor").html())},
+
                     })
-                    });
                     
                 });
             </script>

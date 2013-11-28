@@ -9,10 +9,6 @@ function conectarse() {
 	return $con;
 }
 
-
-	require_once('laboratorio.php');
-
 	$con=conectarse();
     $result = mysqli_query($con,"DELETE FROM laboratorio WHERE id=".$_GET["ID"]);
-    echo ($_GET["ID"]);
 ?>

@@ -9,11 +9,6 @@ function conectarse() {
 	return $con;
 }
 
-$con=conectarse();
-//$sql="UPDATE laboratorio SET nombre = ".$_GET["nombre"].", descripcion = ".$_GET["descripcion"]." WHERE laboratorio.id =".$_GET["ID"]
-//$sql = "UPDATE laboratorio SET nombre='$nombre', direccion='$direccion',"."telefono='$telefono', email='$email'";
-//$sql="UPDATE laboratorio WHERE laboratorio.ID =".$_GET["ID"]
-$result = mysqli_query($con,"UPDATE laboratorio SET nombre = '".$_GET["nombre"].
-	"' ,descripcion= '".$_GET["descripcion"]."' WHERE laboratorio.ID =".$_GET["ID"]);
-
+	$con=conectarse();
+	$result = mysqli_query($con,"DELETE FROM laboratorio WHERE id=".$_GET["ID"]";
 ?> 
