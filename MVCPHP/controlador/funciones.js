@@ -19,6 +19,10 @@ function lisLab()
 {
       window.top.contenido.location='/contruccion/MVCPHP/vista/actual/laboratorios.html';
 }
+function editarLaboratorio()
+{
+    window.top.contenido.location='/contruccion/MVCPHP/vista/actual/editarLaboratorio.html';
+}
 
 function checkForm(form)
     {

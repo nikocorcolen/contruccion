@@ -14,7 +14,7 @@ and open the template in the editor.
     
     <link rel="stylesheet" href="../../js/scripts/samples/sample.css">
    
-<script type="text/javascript"></script>
+<script src="../../controlador/funciones.js"></script>
                         
     <script src="js/jquery.min.js"></script>
     <script src="js/kendo.web.min.js"></script>
@@ -72,11 +72,7 @@ and open the template in the editor.
                 
             </div>
             <input   style="margin-bottom: 5px; width:50%" type="text" class="k-input k-textbox" name="nombre" data-bind="value:nombre">
-            
-             
 
-            
-            
             <div class="k-content" >
             <textarea data-role="editor" 
             data-tools="[          'bold',
@@ -205,16 +201,14 @@ and open the template in the editor.
                             }, 
                             {
                                 width: 100,
-                                command: [
-                                    {name: "edit", text: {edit: "Editar",update: "Actualizar", cancel: "Cancelar"}},
+                                command: [{text:"Editar",click: editar},
                                     {name:"destroy", text: "Eliminar"}
                                 ]
                             } 
                         ],
 
-                        editable: {mode: "popup", confirmation: "¿Esta seguro que desea eliminar este registro?",
-                            window :{title: "Edición", width:1000},
-                            template: kendo.template($("#popup_editor").html())}
+                        editable: {mode:"popup",confirmation: "¿Esta seguro que desea eliminar este registro?"}
+                           
                             
 
                     });
@@ -223,7 +217,10 @@ and open the template in the editor.
                  
                 });
                 
-
+                function editar(e)
+                {
+                    editarLaboratorio();
+                }
                     
             
             </script>
