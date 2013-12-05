@@ -60,8 +60,9 @@ and open the template in the editor.
     
 
         <div id="example" class="k-content">
-          
-                <div id="grid" style="height: 380px;"></div>
+
+
+            <div id="grid" style="height: 380px;"></div>
 
             <!-- TEMPLATE POPUP   -->
             <script id="popup_editor" type="text/x-kendo-template">
@@ -117,10 +118,22 @@ and open the template in the editor.
 
             </div>
             </script>
+
+
+            <!-- Script para mostrar los detalles-->
+
+            <script type="text/x-kendo-template" id="template">
+            <div id="details-container">
+                <h2>Nombre: #= nombre #</h2>
+                <em>Descripcion: #= descripcion #</em>
+            </div>
+            </script>
                 
 <!-- KENDO GRID TABLA PRICIPAL -->
+            <div id="details"></div>
             <script>
 
+            var wnd, detailsTemplate;
            
                 
                 $(document).ready(function() 
@@ -202,7 +215,8 @@ and open the template in the editor.
                             {
                                 width: 100,
                                 command: [{text:"Editar",click: editar},
-                                    {name:"destroy", text: "Eliminar"}
+                                    {name:"destroy", text: "Eliminar"},
+                                    {text: "Detalles",click: showDetails}
                                 ]
                             } 
                         ],
@@ -213,6 +227,17 @@ and open the template in the editor.
 
                     });
 
+                    wnd = $("#details")
+                        .kendoWindow({
+                            title: "Detalles",
+                            modal: true,
+                            visible: false,
+                            resizable: false,
+                            width: 300
+                        }).data("kendoWindow");
+
+                    detailsTemplate = kendo.template($("#template").html());
+
                    
                  
                 });
@@ -220,6 +245,13 @@ and open the template in the editor.
                 function editar(e)
                 {
                     editarLaboratorio();
+                }
+
+                function showDetails(e) {
+                    e.preventDefault();
+                    var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                    wnd.content(detailsTemplate(dataItem));
+                    wnd.center().open();
                 }
                     
             
