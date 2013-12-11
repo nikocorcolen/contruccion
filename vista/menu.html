@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    
+        <div id="example" class="k-content">
+            <div>
+                <ul id="menu">
+                    <li>
+                        Super Administradores
+                    </li>
+                    <li>
+                        Administradores
+                    </li>
+                    <li>
+                        Instructores
+                    </li>
+                    <li>
+                        Aprendices
+                    </li>
+                    <li>
+                       <a onclick="cargarTabla();" href="#"> Laboratorios</a>
+                    </li>
+                    <li>
+                        Configuraciones
+                    </li>
+                </ul>
+            </div>
+
+            <script>
+                $(document).ready(function() {
+                    $("#menu").kendoMenu();
+                });
+            </script>
+        </div>
+
+</body>
+</html>

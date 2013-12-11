@@ -1,0 +1,19 @@
+$(document).ready(function() {
+  $("#descripcion").kendoEditor({
+    tools: 
+    [
+      "bold",
+      "italic",
+      "underline",
+      "strikethrough",
+      "justifyLeft",
+      "justifyCenter",
+      "justifyRight",
+      "justifyFull",
+      "insertUnorderedList",
+      "insertOrderedList",
+      "indent",
+      "outdent"
+    ]
+  });
+});
